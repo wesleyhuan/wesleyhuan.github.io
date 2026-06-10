@@ -1,0 +1,81 @@
+/* ──────────────────────────────────────────
+   履歷網站樣式表
+   每一段都有註解，方便你看懂後自己改
+   ────────────────────────────────────────── */
+
+/* 全站基礎設定：字型、行高、文字顏色 */
+body {
+  font-family: -apple-system, "Helvetica Neue", "PingFang TC",
+               "Microsoft JhengHei", sans-serif;
+  line-height: 1.7;
+  color: #1a1a1a;
+  background: #fafafa;
+  margin: 0;
+}
+
+/* 把內容限制在中間，不要在大螢幕上拉得太寬 */
+main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+/* ── 頁首 ── */
+.site-header {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 1.5rem;
+  border-bottom: 2px solid #1a1a1a;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  letter-spacing: -0.5px;
+}
+
+/* 一句話介紹的顏色淡一點，跟標題拉開層次 */
+.tagline {
+  margin: 0.25rem 0 0;
+  color: #666;
+  font-size: 1.05rem;
+}
+
+/* ── 內文標題 ── */
+/* h2 是區塊標題（關於我、技能、專案） */
+main h2 {
+  font-size: 1.4rem;
+  margin-top: 2.5rem;
+  border-left: 4px solid #1a1a1a;
+  padding-left: 0.6rem;
+}
+
+/* h3 是專案名稱 */
+main h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+/* ── 連結 ── */
+a {
+  color: #0066cc;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ── 頁尾 ── */
+.site-footer {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+  border-top: 1px solid #ddd;
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* ── 手機適配：螢幕變窄時縮小標題 ── */
+@media (max-width: 480px) {
+  .site-header h1 { font-size: 1.8rem; }
+}

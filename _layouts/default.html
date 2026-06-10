@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <!-- 讓網頁在手機上正常縮放，少了這行手機看會超小 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- {{ site.title }} 從 _config.yml 抓 title 欄位 -->
+  <title>{{ site.title }}</title>
+
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+  <!-- 頁首：網站標題與一句話介紹 -->
+  <header class="site-header">
+    <h1>{{ site.title }}</h1>
+    <p class="tagline">{{ site.tagline }}</p>
+  </header>
+
+  <!-- 主要內容區：
+       {{ content }} 是佔位符，
+       任何套用這個 layout 的頁面，內容會被塞進這裡 -->
+  <main>
+    {{ content }}
+  </main>
+
+  <!-- 頁尾：聯絡連結，同樣從 _config.yml 抓資料 -->
+  <footer class="site-footer">
+    <a href="mailto:{{ site.email }}">Email</a>
+    <a href="https://github.com/{{ site.github }}">GitHub</a>
+    <a href="https://linkedin.com/in/{{ site.linkedin }}">LinkedIn</a>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+# ── 網站全域設定 ──
+# 這裡的每個值，在任何頁面/版型裡都能用 {{ site.欄位名 }} 叫出來
+# 改完這個檔案後，GitHub 需要重新 build（push 後等一兩分鐘）
+
+title: 王小明
+tagline: 後端工程師 / Python 愛好者
+description: 我的專案與技能
+
+# 聯絡資訊（在 default.html 的頁尾會用到）
+email: wesley@example.com
+github: your-github-username
+linkedin: your-linkedin-username
