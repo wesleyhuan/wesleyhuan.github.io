@@ -2,11 +2,11 @@
 # 這裡的每個值，在任何頁面/版型裡都能用 {{ site.欄位名 }} 叫出來
 # 改完這個檔案後，GitHub 需要重新 build（push 後等一兩分鐘）
 
-title: 王小明
-tagline: 後端工程師 / Python 愛好者
-description: 我的專案與技能
+title: Huang Wei-Xuan (黃唯軒)
+tagline: Semiconductor Product Integration & Test Automation · Python / AI
+description: Projects, skills, and experience
 
 # 聯絡資訊（在 default.html 的頁尾會用到）
-email: wesley@example.com
-github: your-github-username
-linkedin: your-linkedin-username
+email: wesley910420@gmail.com
+github_url: https://github.com/wesleyhuan
+linkedin_url: https://www.linkedin.com/in/%E5%94%AF%E8%BB%92-%E9%BB%83-061b631a3/
