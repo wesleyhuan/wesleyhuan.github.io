@@ -3,6 +3,16 @@
    每一段都有註解，方便你看懂後自己改
    ────────────────────────────────────────── */
 
+/* ── 主題色（改色只要動這三個變數）──
+   --accent       主色：按鈕、連結、標題色條、時間軸圓點
+   --accent-dark  hover 時的深色
+   --accent-soft  Hero 頁首的淡漸層底 */
+:root {
+  --accent: #4f46e5;
+  --accent-dark: #4338ca;
+  --accent-soft: rgba(79, 70, 229, 0.06);
+}
+
 /* 全站基礎設定：字型、行高、文字顏色 */
 body {
   font-family: -apple-system, "Helvetica Neue", "PingFang TC",
@@ -20,12 +30,14 @@ main {
   padding: 2rem 1.25rem 4rem;
 }
 
-/* ── 頁首 ── */
+/* ── 頁首(Hero) ── */
 .site-header {
   max-width: 680px;
   margin: 0 auto;
   padding: 3rem 1.25rem 1.5rem;
   border-bottom: 2px solid #1a1a1a;
+  /* 從左上角散出一道很淡的主色光暈，讓第一屏有層次但不吵 */
+  background: linear-gradient(150deg, var(--accent-soft), transparent 55%);
 }
 
 .site-header h1 {
@@ -46,7 +58,7 @@ main {
 main h2 {
   font-size: 1.4rem;
   margin-top: 2.5rem;
-  border-left: 4px solid #1a1a1a;
+  border-left: 4px solid var(--accent);
   padding-left: 0.6rem;
 }
 
@@ -61,16 +73,16 @@ main h3 {
 /* 滑鼠移到專案標題：微微右移 + 顏色加深，提示「這是可互動的一塊」 */
 main h3:hover {
   transform: translateX(4px);
-  color: #0066cc;
+  color: var(--accent);
 }
 
 /* ── 連結 ── */
 /* 一般內文連結：底線從左往右滑出，比直接出現底線更細緻 */
 a {
-  color: #0066cc;
+  color: var(--accent);
   text-decoration: none;
   /* 用 background 當底線，才能控制它的寬度動畫 */
-  background-image: linear-gradient(#0066cc, #0066cc);
+  background-image: linear-gradient(var(--accent), var(--accent));
   background-repeat: no-repeat;
   background-position: 0 100%;
   background-size: 0% 1px;          /* 預設寬度 0：看不到底線 */
@@ -117,14 +129,15 @@ a:hover {
   color: #fff;
 }
 
-/* 主按鈕：實心黑，hover 轉藍 */
+/* 主按鈕：實心主色，hover 轉深主色 */
 .btn-primary {
-  background-color: #1a1a1a;
+  background-color: var(--accent);
+  border-color: var(--accent);
   color: #fff;
 }
 .btn-primary:hover {
-  background-color: #0066cc;
-  border-color: #0066cc;
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
 }
 
 /* ──────────────────────────────────────────
@@ -153,11 +166,11 @@ a:hover {
   height: 12px;
   border-radius: 50%;
   background: #fafafa;
-  border: 2px solid #0066cc;
+  border: 2px solid var(--accent);
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 .tl-item:hover::before {
-  background-color: #0066cc;        /* hover 時圓點填滿並放大 */
+  background-color: var(--accent);  /* hover 時圓點填滿並放大 */
   transform: scale(1.2);
 }
 
@@ -204,7 +217,7 @@ a:hover {
 }
 .card-link {
   font-size: 0.85rem;
-  color: #0066cc;
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -239,8 +252,8 @@ a:hover {
   transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 .chips li:hover {
-  border-color: #0066cc;
-  color: #0066cc;
+  border-color: var(--accent);
+  color: var(--accent);
   transform: translateY(-2px);
 }
 
