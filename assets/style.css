@@ -90,9 +90,170 @@ a:hover {
   gap: 1.5rem;
 }
 
-/* ── 手機適配：螢幕變窄時縮小標題 ── */
+/* ──────────────────────────────────────────
+   Hero CTA 按鈕（頁首的行動按鈕）
+   ────────────────────────────────────────── */
+.hero-cta {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;                 /* 手機放不下時自動換行 */
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1.15rem;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  background-image: none;          /* 蓋掉一般連結的滑出底線 */
+  transition: transform 0.2s ease, background-color 0.2s ease,
+              color 0.2s ease, border-color 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);     /* hover 微微浮起 */
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+/* 主按鈕：實心黑，hover 轉藍 */
+.btn-primary {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: #0066cc;
+  border-color: #0066cc;
+}
+
+/* ──────────────────────────────────────────
+   經歷時間軸（左線 + 年份節點）
+   ────────────────────────────────────────── */
+.timeline {
+  position: relative;
+  margin: 0.5rem 0 0 0.4rem;
+  padding-left: 1.6rem;
+  border-left: 2px solid #e2e2e2;  /* 那條垂直線 */
+}
+
+.tl-item {
+  position: relative;
+  padding-bottom: 1.8rem;
+}
+.tl-item:last-child { padding-bottom: 0; }
+
+/* 年份節點：壓在左線上的小圓點 */
+.tl-item::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.6rem - 7px);       /* 對齊到 border-left 的中心 */
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fafafa;
+  border: 2px solid #0066cc;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.tl-item:hover::before {
+  background-color: #0066cc;        /* hover 時圓點填滿並放大 */
+  transform: scale(1.2);
+}
+
+.tl-meta {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}
+.tl-item h3 { margin-top: 0.15rem; }
+
+/* ──────────────────────────────────────────
+   專案卡片（兩欄 grid，hover 浮起）
+   ────────────────────────────────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.card {
+  display: block;
+  padding: 1.1rem 1.2rem;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  color: inherit;                  /* 連結卡片不要變藍字 */
+  background-image: none;          /* 蓋掉滑出底線 */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  border-color: #cfd8e3;
+}
+
+.card h3 { margin: 0 0 0.4rem; }
+.card h3:hover { transform: none; color: inherit; }  /* hover 由整張卡片負責，標題不重複位移 */
+.card p {
+  margin: 0 0 0.6rem;
+  font-size: 0.92rem;
+  color: #444;
+  line-height: 1.55;
+}
+.card-link {
+  font-size: 0.85rem;
+  color: #0066cc;
+  font-weight: 600;
+}
+
+/* ──────────────────────────────────────────
+   技能標籤（分組 chip）
+   ────────────────────────────────────────── */
+.skill-group { margin-bottom: 1.1rem; }
+.skill-group:last-child { margin-bottom: 0; }
+
+.skill-group h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+}
+
+.chips {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.chips li {
+  padding: 0.3rem 0.8rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.chips li:hover {
+  border-color: #0066cc;
+  color: #0066cc;
+  transform: translateY(-2px);
+}
+
+/* ──────────────────────────────────────────
+   手機適配
+   ────────────────────────────────────────── */
 @media (max-width: 480px) {
   .site-header h1 { font-size: 1.8rem; }
+}
+
+/* 螢幕較窄時專案卡片改成單欄 */
+@media (max-width: 560px) {
+  .cards { grid-template-columns: 1fr; }
 }
 
 /* ──────────────────────────────────────────
@@ -115,14 +276,16 @@ a:hover {
 /* 共用：套上這個行為的元素先設為透明，再用 forwards 停在動畫結尾狀態 */
 .site-header h1,
 .tagline,
+.hero-cta,
 main h2 {
   opacity: 0;                                  /* 動畫開始前先藏起來 */
   animation: fadeUp 0.5s ease forwards;
 }
 
-/* 頁首：標題先進，介紹詞晚一點點，做出層次 */
+/* 頁首：標題先進，介紹詞、按鈕依序晚一點點，做出層次 */
 .site-header h1 { animation-delay: 0.05s; }
 .tagline        { animation-delay: 0.15s; }
+.hero-cta       { animation-delay: 0.25s; }
 
 /* 內文區塊標題：依序往下淡入(cascade)，每個慢 0.08s */
 main h2:nth-of-type(1) { animation-delay: 0.25s; }
@@ -141,6 +304,7 @@ main h2:nth-of-type(7) { animation-delay: 0.73s; }
 @media (prefers-reduced-motion: reduce) {
   .site-header h1,
   .tagline,
+  .hero-cta,
   main h2 {
     opacity: 1;
     animation: none;

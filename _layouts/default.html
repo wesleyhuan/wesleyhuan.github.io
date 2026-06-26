@@ -12,10 +12,17 @@
 </head>
 <body>
 
-  <!-- 頁首：網站標題與一句話介紹 -->
+  <!-- 頁首(Hero)：網站標題、一句話介紹，加上行動按鈕 -->
   <header class="site-header">
     <h1>{{ site.title }}</h1>
     <p class="tagline">{{ site.tagline }}</p>
+
+    <!-- Hero CTA：主要按鈕導向 Email，次要按鈕到 GitHub / LinkedIn -->
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="mailto:{{ site.email }}">Get in touch</a>
+      <a class="btn" href="{{ site.github_url }}">GitHub</a>
+      <a class="btn" href="{{ site.linkedin_url }}">LinkedIn</a>
+    </div>
   </header>
 
   <!-- 主要內容區：
