@@ -26,8 +26,9 @@
   </header>
 
   <!-- 主要內容區：
-       {{ content }} 是佔位符，
-       任何套用這個 layout 的頁面，內容會被塞進這裡 -->
+       下面 main 裡的 content 佔位符，會被套用這個 layout 的頁面內容取代。
+       注意：佔位符的 Liquid 標籤只能放在 main 裡，不要寫進註解，
+       否則 Liquid 會在註解裡也展開一次，導致內容重複。 -->
   <main>
     {{ content }}
   </main>
