@@ -23,6 +23,33 @@ body {
   margin: 0;
 }
 
+/* ──────────────────────────────────────────
+   極光背景：固定在視窗、墊在所有內容最底層
+   幾團模糊的主色光暈用 transform 緩慢飄動
+   —— 純 CSS、GPU 合成、零 JS
+   ────────────────────────────────────────── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -25%;                       /* 比視窗大一圈，飄動時不會露出邊緣 */
+  z-index: -1;                       /* 壓在所有內容下面 */
+  pointer-events: none;              /* 不擋滑鼠點擊 */
+  background:
+    radial-gradient(38% 38% at 18% 22%, rgba(79, 70, 229, 0.20), transparent 60%),
+    radial-gradient(34% 34% at 82% 18%, rgba(13, 148, 136, 0.16), transparent 60%),
+    radial-gradient(44% 44% at 72% 80%, rgba(99, 102, 241, 0.18), transparent 60%),
+    radial-gradient(30% 30% at 28% 78%, rgba(79, 70, 229, 0.14), transparent 60%);
+  filter: blur(60px);                /* 把光暈邊緣糊掉，更像極光 */
+  animation: aurora 24s ease-in-out infinite alternate;
+}
+
+/* 只動 transform（位移 + 微縮放），所以很省效能 */
+@keyframes aurora {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(2.5%, -2%, 0) scale(1.12); }
+  100% { transform: translate3d(-2.5%, 2%, 0) scale(1.06); }
+}
+
 /* 把內容限制在中間，不要在大螢幕上拉得太寬 */
 main {
   max-width: 680px;
@@ -322,6 +349,8 @@ main h2:nth-of-type(7) { animation-delay: 0.73s; }
     opacity: 1;
     animation: none;
   }
+  /* 極光保留，但停止飄動 */
+  body::before { animation: none; }
   * {
     transition: none !important;
   }
