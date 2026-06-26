@@ -54,15 +54,30 @@ main h2 {
 main h3 {
   font-size: 1.1rem;
   margin-bottom: 0.2rem;
+  /* 讓 hover 時的位移有平滑過渡 */
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* 滑鼠移到專案標題：微微右移 + 顏色加深，提示「這是可互動的一塊」 */
+main h3:hover {
+  transform: translateX(4px);
+  color: #0066cc;
 }
 
 /* ── 連結 ── */
+/* 一般內文連結：底線從左往右滑出，比直接出現底線更細緻 */
 a {
   color: #0066cc;
   text-decoration: none;
+  /* 用 background 當底線，才能控制它的寬度動畫 */
+  background-image: linear-gradient(#0066cc, #0066cc);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;          /* 預設寬度 0：看不到底線 */
+  transition: background-size 0.25s ease;
 }
 a:hover {
-  text-decoration: underline;
+  background-size: 100% 1px;        /* hover 時底線展開到滿 */
 }
 
 /* ── 頁尾 ── */
@@ -78,4 +93,59 @@ a:hover {
 /* ── 手機適配：螢幕變窄時縮小標題 ── */
 @media (max-width: 480px) {
   .site-header h1 { font-size: 1.8rem; }
+}
+
+/* ──────────────────────────────────────────
+   進場動畫：頁面載入時，內容淡入並微微上移
+   細緻克制版 —— 位移小(8px)、速度快(0.5s)、ease 緩動
+   ────────────────────────────────────────── */
+
+/* 動畫本體：從「透明 + 下方 8px」變回「不透明 + 原位」 */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 共用：套上這個行為的元素先設為透明，再用 forwards 停在動畫結尾狀態 */
+.site-header h1,
+.tagline,
+main h2 {
+  opacity: 0;                                  /* 動畫開始前先藏起來 */
+  animation: fadeUp 0.5s ease forwards;
+}
+
+/* 頁首：標題先進，介紹詞晚一點點，做出層次 */
+.site-header h1 { animation-delay: 0.05s; }
+.tagline        { animation-delay: 0.15s; }
+
+/* 內文區塊標題：依序往下淡入(cascade)，每個慢 0.08s */
+main h2:nth-of-type(1) { animation-delay: 0.25s; }
+main h2:nth-of-type(2) { animation-delay: 0.33s; }
+main h2:nth-of-type(3) { animation-delay: 0.41s; }
+main h2:nth-of-type(4) { animation-delay: 0.49s; }
+main h2:nth-of-type(5) { animation-delay: 0.57s; }
+main h2:nth-of-type(6) { animation-delay: 0.65s; }
+main h2:nth-of-type(7) { animation-delay: 0.73s; }
+
+/* ──────────────────────────────────────────
+   無障礙：若使用者在系統設定關閉動畫，
+   就直接顯示內容、停用所有動畫與過渡
+   （履歷網站該有的專業細節）
+   ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .site-header h1,
+  .tagline,
+  main h2 {
+    opacity: 1;
+    animation: none;
+  }
+  * {
+    transition: none !important;
+  }
 }
